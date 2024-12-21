@@ -1,0 +1,47 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Build site
+        run: |
+          # Add any build steps here if needed in the future
+          echo "Building site..."
+
+      - name: Test site
+        run: |
+          # Add tests here once we implement them
+          echo "Testing site..."
+
+      - name: Deploy to S3
+        run: |
+          echo "Starting deployment..."
+          aws s3 sync . s3://cogniscent-ai-gallery \
+            --delete \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "*.json" \
+            --exclude "README.md"
+          echo "Deployment complete!"
+
+      - name: Verify deployment
+        run: |
+          echo "Verifying deployment..."
+          # Add verification steps here
+          aws s3 ls s3://cogniscent-ai-gallery --recursive

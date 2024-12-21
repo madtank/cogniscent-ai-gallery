@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CogniscentAI - AI Art Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-indigo-600">CogniscentAI</span>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#gallery" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Gallery
+                    </a>
+                    <a href="#blog" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Blog
+                    </a>
+                    <a href="#about" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        About
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative bg-white">
+        <div class="max-w-7xl mx-auto pt-16 pb-12 px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                    <span class="block">Exploring AI Art</span>
+                    <span class="block text-indigo-600">and Innovation</span>
+                </h1>
+                <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    Journey through AI-generated artworks and insights into the creative process of machine learning
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div id="gallery" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Featured Artworks</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Floating City Image -->
+                <div class="relative group">
+                    <img src="assets/images/zen-garden.webp" alt="AI Generated Floating City" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                        <h3 class="text-white text-xl font-semibold">Floating City at Sunset</h3>
+                        <p class="text-gray-200">A majestic sci-fi metropolis floating among golden clouds</p>
+                    </div>
+                </div>
+                <!-- Cyberpunk City Image -->
+                <div class="relative group">
+                    <img src="assets/images/cyberpunk-city.webp" alt="AI Generated Cyberpunk City" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                        <h3 class="text-white text-xl font-semibold">Neon Streets</h3>
+                        <p class="text-gray-200">A vibrant cyberpunk cityscape with neon-lit streets reflecting in the rain</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature Section -->
+    <div class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                <div class="relative p-6 bg-white rounded-lg shadow-sm">
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900">AI Art Gallery</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Explore a curated collection of AI-generated artwork created using various machine learning models
+                        </p>
+                    </div>
+                </div>
+                <div class="relative p-6 bg-white rounded-lg shadow-sm">
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4">
+                            <i class="fas fa-pencil-alt"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900">Technical Blog</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Deep dives into the technology and processes behind AI art generation
+                        </p>
+                    </div>
+                </div>
+                <div class="relative p-6 bg-white rounded-lg shadow-sm">
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900">About the Project</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Learn about the mission and technology powering this AI art exploration
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
