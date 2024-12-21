@@ -1,0 +1,1 @@
+// Content from gallery-component artifact
