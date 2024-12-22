@@ -20,23 +20,52 @@ describe('Navigation', () => {
   it('renders all navigation links', () => {
     render(<RootLayout>{<div>Test content</div>}</RootLayout>);
     
-    // Check if all nav links are present using case-insensitive regex
-    expect(screen.getByRole('link', { name: /gallery/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /blog/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
+    // Get all navigation links using getAllByRole and filter by desktop navigation
+    const nav = screen.getByLabelText('Main navigation');
+    const galleryLink = screen.getAllByRole('link', { name: /gallery/i })[0];
+    const blogLink = screen.getAllByRole('link', { name: /blog/i })[0];
+    const aboutLink = screen.getAllByRole('link', { name: /about/i })[0];
+    
+    expect(nav).toBeInTheDocument();
+    expect(galleryLink).toBeInTheDocument();
+    expect(blogLink).toBeInTheDocument();
+    expect(aboutLink).toBeInTheDocument();
   });
 
   it('renders blog link with correct href', () => {
     render(<RootLayout>{<div>Test content</div>}</RootLayout>);
     
-    const blogLink = screen.getByRole('link', { name: /blog/i });
-    expect(blogLink).toHaveAttribute('href', '/blog');
+    // Get the first blog link (desktop navigation)
+    const blogLinks = screen.getAllByRole('link', { name: /blog/i });
+    expect(blogLinks[0]).toHaveAttribute('href', '/blog');
   });
 
   it('renders with children', () => {
     const testContent = 'Test Content';
-    render(<RootLayout><div>{testContent}</div></RootLayout>);
+    render(<RootLayout>{<div>{testContent}</div>}</RootLayout>);
     
     expect(screen.getByText(testContent)).toBeInTheDocument();
+  });
+
+  it('toggles mobile menu', async () => {
+    render(<RootLayout>{<div>Test content</div>}</RootLayout>);
+    
+    // Get the menu button
+    const menuButton = screen.getByRole('button', { name: /open menu/i });
+    expect(menuButton).toBeInTheDocument();
+    
+    // Initially mobile menu should be hidden
+    const mobileNav = screen.getByRole('navigation', { name: /mobile navigation/i });
+    expect(mobileNav).toHaveClass('hidden');
+    
+    // Click menu button to open
+    await userEvent.click(menuButton);
+    expect(mobileNav).toHaveClass('block');
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true');
+    
+    // Click again to close
+    await userEvent.click(menuButton);
+    expect(mobileNav).toHaveClass('hidden');
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false');
   });
 });
