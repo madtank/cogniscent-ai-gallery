@@ -1,80 +1,86 @@
-'use client';
-
-import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import { useState } from 'react';
-import ImageModal from '../components/ImageModal';
+import { Dialog } from '@/components/ui/dialog';
 
-const GalleryPage = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-  
-  const artworks = [
+interface Artwork {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  prompt: string;
+  date: string;
+  width: number;
+  height: number;
+}
+
+const GalleryPage: React.FC = () => {
+  const [selectedImage, setSelectedImage] = useState<Artwork | null>(null);
+
+  const artworks: Artwork[] = [
     {
       id: 1,
-      title: 'Cyberpunk City',
-      description: 'A rain-slicked street with neon signs illuminating the night, capturing the essence of a dystopian future where technology and urban decay create a hauntingly beautiful atmosphere.',
-      image: '/images/cyberpunk-city.webp',
-      prompt: 'A cyberpunk cityscape at night, rain-slicked streets reflecting neon signs, dense urban environment, atmospheric lighting, cinematic composition, highly detailed, moody lighting',
-      date: 'December 22, 2024',
+      title: "Cyberpunk City",
+      description: "A neon-lit cityscape with floating vehicles",
+      image: "/images/cyberpunk-city.webp",
+      prompt: "cyberpunk cityscape with neon lights and floating cars, detailed architecture",
+      date: "2024-01-15",
       width: 1024,
       height: 1024
     },
-    {
-      id: 2,
-      title: 'Zen Garden',
-      description: 'A peaceful Japanese garden with floating elements that blend traditional aesthetics with surreal, gravity-defying features, creating a space of spiritual tranquility.',
-      image: '/images/zen-garden.webp',
-      prompt: 'A serene Japanese zen garden with floating stone lanterns and bonsai trees, morning mist, soft natural lighting, ethereal atmosphere, photorealistic style',
-      date: 'December 22, 2024',
-      width: 1024,
-      height: 1024
-    },
+    // Add more artworks here
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Art Gallery</h1>
-          <p className="text-xl text-gray-600">A collection of AI-generated artwork exploring different styles and themes</p>
-        </header>
-        
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {artworks.map((artwork) => (
-            <Card 
-              key={artwork.id} 
-              className="overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer"
-              onClick={() => setSelectedImage(artwork)}
-            >
-              <div className="relative aspect-square w-full">
-                <Image
-                  src={artwork.image}
-                  alt={artwork.title}
-                  width={artwork.width}
-                  height={artwork.height}
-                  className="object-cover"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold text-gray-900">
-                  {artwork.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 line-clamp-2">{artwork.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold mb-8">AI Art Gallery</h1>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {artworks.map((artwork) => (
+          <div
+            key={artwork.id}
+            className="overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer"
+            onClick={() => setSelectedImage(artwork)}
+          >
+            <div className="relative aspect-square w-full">
+              <Image
+                src={artwork.image}
+                alt={artwork.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </div>
+            <div className="p-4">
+              <h2 className="text-xl font-semibold">{artwork.title}</h2>
+              <p className="text-gray-600 mt-2">{artwork.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
 
       {selectedImage && (
-        <ImageModal
-          isOpen={!!selectedImage}
-          onClose={() => setSelectedImage(null)}
-          image={selectedImage}
-        />
+        <Dialog
+          open={!!selectedImage}
+          onOpenChange={() => setSelectedImage(null)}
+        >
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-4">{selectedImage.title}</h2>
+            <div className="relative aspect-square w-full max-w-3xl mx-auto">
+              <Image
+                src={selectedImage.image}
+                alt={selectedImage.title}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+              />
+            </div>
+            <div className="mt-4">
+              <p className="text-gray-700 mb-2">{selectedImage.description}</p>
+              <p className="text-sm text-gray-500">Prompt: {selectedImage.prompt}</p>
+              <p className="text-sm text-gray-500">Created: {selectedImage.date}</p>
+            </div>
+          </div>
+        </Dialog>
       )}
     </div>
   );
