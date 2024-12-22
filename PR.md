@@ -1,29 +1,36 @@
-# Fix Client Component Issues in Layout
+# Improve Tests and Accessibility
 
 ## Description
 
-This PR addresses the runtime error related to using React hooks in a server component. It adds the necessary 'use client' directive to the layout component to ensure proper client-side rendering for interactive elements.
-
-## Type of change
-
-- [x] Bug fix (non-breaking change which fixes an issue)
+This PR improves test coverage and accessibility while fixing a runtime error with client components. The changes enhance both the testing infrastructure and component implementation.
 
 ## Changes Made
 
-- Added 'use client' directive to layout.tsx
-- Fixed server component error with useState hook
-- Maintained all functionality for mobile menu toggle
-- Previous test fixes remain in place and passing
+1. Navigation Component Improvements:
+   - Fixed DOM nesting and accessibility issues
+   - Improved test queries using `getByRole`
+   - Added proper ARIA labels and roles
+   - Fixed mobile menu toggle tests
+
+2. Blog Component Updates:
+   - Fixed invalid h1 inside h3 nesting
+   - Updated test cases to match content
+   - Added more specific test assertions
+   - Improved component structure
+
+3. Client Component Fix:
+   - Added 'use client' directive to layout component
+   - Fixed React hook usage in Next.js 14
+   - Maintained all mobile menu functionality
 
 ## Testing
 
-- [x] All tests pass locally
-- [x] Manual testing completed:
-  - Tested mobile menu toggle
-  - Verified navigation links work
-  - Checked responsive behavior
-- [x] No new console errors/warnings in production build
+- All tests are passing
+- Verified mobile menu toggle works
+- Checked responsive design
+- No console errors in production build
+- Improved accessibility for screen readers
 
-## Additional Notes
+## Additional Context
 
-This fix is required for Next.js 14 which enforces stricter server/client component boundaries. The layout component needs to be a client component since it uses React's useState hook for the mobile menu toggle functionality.
+The client component fix was necessary for Next.js 14 which has stricter server/client component boundaries. This change ensures proper client-side rendering for interactive elements while maintaining all accessibility improvements.
