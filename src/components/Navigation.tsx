@@ -43,10 +43,11 @@ export default function Navigation() {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
-              aria-expanded="false"
+              aria-expanded={isMenuOpen}
+              aria-haspopup="true"
+              aria-label="Toggle navigation menu"
             >
               <span className="sr-only">{isMenuOpen ? 'Close menu' : 'Open menu'}</span>
-              {/* Menu icon */}
               {!isMenuOpen ? (
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -61,23 +62,31 @@ export default function Navigation() {
         </div>
 
         {/* Mobile menu */}
-        <div className={`sm:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <div 
+          className={`sm:hidden ${isMenuOpen ? 'block' : 'hidden'}`}
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="main-menu"
+        >
           <div className="pt-2 pb-3 space-y-1">
             <Link
               href="/gallery"
               className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+              role="menuitem"
             >
               Gallery
             </Link>
             <Link
               href="/blog"
               className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+              role="menuitem"
             >
               Blog
             </Link>
             <Link
               href="/about"
               className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+              role="menuitem"
             >
               About
             </Link>
