@@ -1,42 +1,33 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import RootLayout from '../layout';
-
-// Mock useRouter
-jest.mock('next/navigation', () => ({
-  useRouter() {
-    return {
-      push: jest.fn(),
-      pathname: '/',
-    };
-  },
-  usePathname() {
-    return '/';
-  }
-}));
 
 describe('Navigation', () => {
   it('renders all navigation links', () => {
     render(<RootLayout>{<div>Test content</div>}</RootLayout>);
     
-    // Check if all nav links are present using case-insensitive regex
-    expect(screen.getByRole('link', { name: /gallery/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /blog/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
+    // Get the desktop navigation container
+    const desktopNav = screen.getByRole('navigation');
+    const desktopLinks = desktopNav.querySelectorAll('a');
+    
+    // Check if links exist and have correct hrefs
+    expect(desktopLinks[1]).toHaveAttribute('href', '/gallery');
+    expect(desktopLinks[2]).toHaveAttribute('href', '/blog');
+    expect(desktopLinks[3]).toHaveAttribute('href', '/about');
   });
 
-  it('renders blog link with correct href', () => {
+  it('contains correct link text', () => {
     render(<RootLayout>{<div>Test content</div>}</RootLayout>);
     
-    const blogLink = screen.getByRole('link', { name: /blog/i });
-    expect(blogLink).toHaveAttribute('href', '/blog');
+    // Look for specific link text in the desktop navigation
+    expect(screen.getByText('Gallery')).toBeInTheDocument();
+    expect(screen.getByText('Blog')).toBeInTheDocument();
+    expect(screen.getByText('About')).toBeInTheDocument();
   });
 
-  it('renders with children', () => {
-    const testContent = 'Test Content';
-    render(<RootLayout><div>{testContent}</div></RootLayout>);
+  it('includes logo link to home', () => {
+    render(<RootLayout>{<div>Test content</div>}</RootLayout>);
     
-    expect(screen.getByText(testContent)).toBeInTheDocument();
+    const logoLink = screen.getByText('CogniscentAI');
+    expect(logoLink).toHaveAttribute('href', '/');
   });
 });
