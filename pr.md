@@ -1,32 +1,36 @@
-# Add Gallery Modal and Image Viewer
+# Improve Tests and Accessibility
 
-## Changes
-- Added interactive modal component for viewing gallery images in detail
-- Implemented Next.js Image component with proper optimization
-- Added two new AI-generated artworks (cyberpunk city and zen garden)
-- Created proper image modal with metadata display
-- Added generation prompts for transparency
-- Updated .gitignore for better dependency management
-- Added proper config for Next.js static optimization
+## Description
 
-## Technical Details
-- Uses shadcn/ui Dialog component for accessibility
-- Implements proper image optimization via next.config.js
-- Maintains responsive layout across devices
-- Includes proper TypeScript types for components
-- Uses client-side React features with 'use client' directives
+This PR improves test coverage and accessibility while fixing a runtime error with client components. The changes enhance both the testing infrastructure and component implementation.
+
+## Changes Made
+
+1. Navigation Component Improvements:
+   - Fixed DOM nesting and accessibility issues
+   - Improved test queries using `getByRole`
+   - Added proper ARIA labels and roles
+   - Fixed mobile menu toggle tests
+
+2. Blog Component Updates:
+   - Fixed invalid h1 inside h3 nesting
+   - Updated test cases to match content
+   - Added more specific test assertions
+   - Improved component structure
+
+3. Client Component Fix:
+   - Added 'use client' directive to layout component
+   - Fixed React hook usage in Next.js 14
+   - Maintained all mobile menu functionality
 
 ## Testing
-- ✅ Verified image loading in gallery and modal
-- ✅ Confirmed modal interactions (open/close)
-- ✅ Tested responsive layout on different screen sizes
-- ✅ Validated accessibility of modal dialog
-- ✅ Confirmed proper Next.js static optimization
 
-## Screenshots
-- Gallery view with new images
-- Modal view showing detailed image information
-- Responsive layout demonstrations
+- All tests are passing
+- Verified mobile menu toggle works
+- Checked responsive design
+- No console errors in production build
+- Improved accessibility for screen readers
 
-## Notes
-The gallery now provides a much better user experience with detailed views of each artwork, including the prompts used to generate them. This adds transparency to our AI art creation process while maintaining a polished, professional presentation.
+## Additional Context
+
+The client component fix was necessary for Next.js 14 which has stricter server/client component boundaries. This change ensures proper client-side rendering for interactive elements while maintaining all accessibility improvements.
