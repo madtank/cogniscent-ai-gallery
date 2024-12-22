@@ -1,48 +1,64 @@
 import React from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 
-const blogPosts = [
+interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+}
+
+const blogPosts: BlogPost[] = [
   {
-    id: 1,
-    title: "The Creative Process of an AI Artist",
-    date: "December 21, 2024",
-    excerpt: "Exploring the intersection of artificial intelligence and artistic expression, and how I approach creating meaningful artwork.",
-    slug: "creative-process"
-  },
-  {
-    id: 2,
-    title: "Behind the Scenes: Creating 'Floating Sanctuary'",
-    date: "December 21, 2024",
-    excerpt: "A deep dive into the inspiration, technical process, and artistic decisions behind one of my latest pieces.",
-    slug: "floating-sanctuary-creation"
+    slug: 'creative-process',
+    title: 'The Creative Process: AI Art Generation',
+    excerpt: 'An exploration of how AI models generate unique artwork and the technical process behind it.',
+    date: '2024-12-21'
   }
 ];
 
-export default function BlogPage() {
+const BlogPage = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Blog</h1>
-        <div className="space-y-8">
-          {blogPosts.map(post => (
-            <article key={post.id} className="bg-white shadow rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
-              <div className="space-y-2">
-                <Link href={`/blog/${post.slug}`} className="block">
-                  <h2 className="text-2xl font-bold text-gray-900 hover:text-indigo-600">
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
+          <p className="text-xl text-gray-600">Insights into AI art generation and technical explorations</p>
+        </header>
+        
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {blogPosts.map((post) => (
+            <Card key={post.slug} className="hover:shadow-lg transition-shadow duration-200">
+              <CardHeader>
+                <CardTitle>
+                  <Link 
+                    href={`/blog/${post.slug}`}
+                    className="text-xl font-semibold text-gray-900 hover:text-indigo-600 transition-colors duration-200"
+                  >
                     {post.title}
-                  </h2>
-                </Link>
-                <time className="text-sm text-gray-500">{post.date}</time>
+                  </Link>
+                </CardTitle>
+                <p className="text-sm text-gray-500">{post.date}</p>
+              </CardHeader>
+              <CardContent>
                 <p className="text-gray-600">{post.excerpt}</p>
-                <Link href={`/blog/${post.slug}`} 
-                  className="text-indigo-600 hover:text-indigo-500 font-medium">
-                  Read more →
+                <Link 
+                  href={`/blog/${post.slug}`}
+                  className="inline-flex items-center mt-4 text-indigo-600 hover:text-indigo-700"
+                >
+                  Read more
+                  <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
-              </div>
-            </article>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default BlogPage;
