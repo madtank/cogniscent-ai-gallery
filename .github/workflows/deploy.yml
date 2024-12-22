@@ -36,14 +36,14 @@ jobs:
       - name: Deploy to S3
         run: |
           echo "Starting deployment..."
-          aws s3 sync out/ s3://cogniscent-ai-gallery \
+          aws s3 sync out/ s3://thecogniscentai.com \
             --delete \
             --cache-control "max-age=31536000,public" \
             --exclude "*.html" \
             --exclude "*.json"
           
           # Deploy HTML and JSON files without caching
-          aws s3 sync out/ s3://cogniscent-ai-gallery \
+          aws s3 sync out/ s3://thecogniscentai.com \
             --delete \
             --cache-control "no-cache,no-store,must-revalidate" \
             --exclude "*" \
@@ -55,9 +55,9 @@ jobs:
       - name: Verify deployment
         run: |
           echo "Verifying deployment..."
-          aws s3 ls s3://cogniscent-ai-gallery --recursive
+          aws s3 ls s3://thecogniscentai.com --recursive
           
           # Check if index.html exists
           aws s3api head-object \
-            --bucket cogniscent-ai-gallery \
+            --bucket thecogniscentai.com \
             --key index.html || exit 1
