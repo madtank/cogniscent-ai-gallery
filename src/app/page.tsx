@@ -44,9 +44,12 @@ export default function HomePage() {
                 </p>
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div className="rounded-md shadow">
-                    <a href="#gallery" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                    <Link 
+                      href="/gallery" 
+                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+                    >
                       View Gallery
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -58,23 +61,25 @@ export default function HomePage() {
       {/* Gallery Section */}
       <div id="gallery" className="py-12 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-8">Gallery</h2>
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-8">Featured Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {galleryItems.map((item, index) => (
-              <div key={index} className="relative h-64 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end hover:bg-opacity-30 transition-opacity duration-300">
-                  <div className="p-4 text-white">
-                    <h3 className="font-bold text-lg">{item.title}</h3>
-                    <p className="text-sm">{item.description}</p>
+              <Link href="/gallery" key={index} className="block">
+                <div className="relative h-64 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end hover:bg-opacity-30 transition-opacity duration-300">
+                    <div className="p-4 text-white">
+                      <h3 className="font-bold text-lg">{item.title}</h3>
+                      <p className="text-sm">{item.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -90,7 +95,9 @@ export default function HomePage() {
                 <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
                   <ImageIcon className="h-6 w-6" />
                 </div>
-                <p className="ml-16 text-lg leading-6 font-medium text-gray-900">AI Art Gallery</p>
+                <Link href="/gallery" className="ml-16 text-lg leading-6 font-medium text-gray-900 hover:text-indigo-600">
+                  AI Art Gallery
+                </Link>
                 <p className="mt-2 ml-16 text-base text-gray-500">
                   A curated collection of my AI-generated artwork exploring different styles and themes
                 </p>
