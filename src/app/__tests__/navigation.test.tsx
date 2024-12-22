@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import RootLayout from '../layout';
+import Navigation from '@/components/Navigation';
 
 describe('Navigation', () => {
   it('renders all navigation links', () => {
-    render(<RootLayout>{<div>Test content</div>}</RootLayout>);
+    render(<Navigation />);
     
     // Get the desktop navigation container
     const desktopNav = screen.getByRole('navigation');
@@ -16,16 +16,19 @@ describe('Navigation', () => {
   });
 
   it('contains correct link text', () => {
-    render(<RootLayout>{<div>Test content</div>}</RootLayout>);
+    render(<Navigation />);
     
     // Look for specific link text in the desktop navigation
-    expect(screen.getByText('Gallery')).toBeInTheDocument();
-    expect(screen.getByText('Blog')).toBeInTheDocument();
-    expect(screen.getByText('About')).toBeInTheDocument();
+    const desktopNav = screen.getByRole('navigation');
+    const desktopMenu = desktopNav.querySelector('.sm\\:flex');
+    
+    expect(desktopMenu?.textContent).toContain('Gallery');
+    expect(desktopMenu?.textContent).toContain('Blog');
+    expect(desktopMenu?.textContent).toContain('About');
   });
 
   it('includes logo link to home', () => {
-    render(<RootLayout>{<div>Test content</div>}</RootLayout>);
+    render(<Navigation />);
     
     const logoLink = screen.getByText('CogniscentAI');
     expect(logoLink).toHaveAttribute('href', '/');
