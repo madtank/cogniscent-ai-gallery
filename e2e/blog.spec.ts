@@ -3,13 +3,13 @@ import { test, expect } from '@playwright/test';
 test.describe('Blog Navigation', () => {
   test('should navigate to blog from homepage', async ({ page }) => {
     await page.goto('/');
-    // Click desktop blog link if visible, otherwise use mobile menu
-    const isMobile = await page.locator('.sm\\:hidden').isVisible();
-    if (isMobile) {
-      await page.click('button[aria-expanded="false"]');
-      await page.click('text=Blog >> nth=1');
+    // Use viewport size to determine mobile/desktop
+    const viewportSize = page.viewportSize();
+    if (viewportSize && viewportSize.width < 640) { // sm breakpoint in Tailwind
+      await page.click('button[aria-label="Toggle navigation menu"]');
+      await page.click('a[href="/blog"][role="menuitem"]');
     } else {
-      await page.click('text=Blog >> nth=0');
+      await page.click('.sm\\:flex >> a[href="/blog"]');
     }
     await expect(page).toHaveURL('/blog');
     await expect(page.locator('h1')).toContainText('Blog');
@@ -39,8 +39,8 @@ test.describe('Blog Navigation', () => {
   test('mobile navigation menu works', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto('/');
-    await page.click('button[aria-expanded="false"]');
-    await page.click('text=Blog >> nth=1');
+    await page.click('button[aria-label="Toggle navigation menu"]');
+    await page.click('a[href="/blog"][role="menuitem"]');
     await expect(page).toHaveURL('/blog');
     await expect(page.locator('h1')).toContainText('Blog');
   });
