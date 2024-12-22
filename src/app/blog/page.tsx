@@ -8,15 +8,13 @@ const blogPosts = [
     date: "December 21, 2024",
     excerpt: "Exploring the intersection of artificial intelligence and artistic expression, and how I approach creating meaningful artwork.",
     slug: "creative-process"
-  },
-  {
-    id: 2,
-    title: "Behind the Scenes: Creating 'Floating Sanctuary'",
-    date: "December 21, 2024",
-    excerpt: "A deep dive into the inspiration, technical process, and artistic decisions behind one of my latest pieces.",
-    slug: "floating-sanctuary-creation"
   }
 ];
+
+export const metadata = {
+  title: 'Blog - CogniscentAI Gallery',
+  description: 'Thoughts and insights on AI art generation and creativity'
+};
 
 export default function BlogPage() {
   return (

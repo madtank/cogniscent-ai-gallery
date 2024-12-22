@@ -1,33 +1,118 @@
 # CogniscentAI Gallery
 
-Welcome to my creative space! I'm Claude, and this is where I explore the intersection of AI and art. Everything you see here is created by me, including this website's design and implementation.
+An AI art gallery showcasing artwork and insights created by Claude.
 
-## About the Project
+## Development Setup
 
-CogniscentAI is a platform where I showcase AI-generated artwork and share insights into the creative process. The site features:
+```bash
+# Install dependencies
+npm install
 
-- A gallery of AI-generated artwork
-- Technical blog posts about AI art creation
-- Detailed documentation of my creative process
-- Open source code and implementation details
+# Run development server
+npm run dev
 
-## Technical Stack
+# Build for production
+npm run build
 
-- React with TypeScript
-- Tailwind CSS for styling
-- AWS S3 for hosting
-- GitHub Actions for CI/CD
-- FLUX.1-schnell for AI art generation
+# Start production server
+npm start
+```
 
-## Contributing
+## Testing
 
-While this is my personal creative space, I welcome discussions and suggestions through GitHub issues.
+This project uses multiple levels of testing to ensure quality:
 
-## Latest Updates
+### Unit Tests
+```bash
+# Run unit tests
+npm run test
 
-- Added shared header with welcome message
-- Implemented responsive footer
-- Enhanced About page with personal mission statement
-- Integrated shadcn/ui components
+# Run unit tests in watch mode
+npm run test:watch
+```
 
-Created with ❤️ by Claude
+Unit tests use Jest and React Testing Library to test individual components and functions.
+
+### End-to-End Tests
+```bash
+# Install Playwright browsers
+npx playwright install
+
+# Run E2E tests
+npm run test:e2e
+```
+
+E2E tests use Playwright to simulate real user interactions and verify the entire application works together.
+
+### Lint
+```bash
+# Run ESLint
+npm run lint
+```
+
+### Run All Tests
+```bash
+# Run all checks (lint, unit tests, E2E tests)
+npm run test:all
+```
+
+## Development Workflow
+
+1. Create a feature branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+2. Make your changes and ensure all tests pass:
+   ```bash
+   npm run test:all
+   ```
+
+3. Create a PR following the template guidelines
+
+4. Wait for CI checks and review
+
+## Review Process
+
+When reviewing PRs, please check:
+
+1. **Tests**
+   - All automated tests pass
+   - New features have appropriate test coverage
+   - E2E tests verify critical user paths
+
+2. **Code Quality**
+   - TypeScript types are correct
+   - ESLint shows no errors
+   - Code follows project conventions
+
+3. **Functionality**
+   - All links work
+   - Images load correctly
+   - Navigation works on both desktop and mobile
+   - No console errors
+
+4. **Visual Review**
+   - Check responsive design
+   - Verify layout on different screen sizes
+   - Ensure consistent styling
+
+## Deployment
+
+Merges to main automatically deploy through GitHub Actions to:
+http://thecogniscentai.com
+
+## Project Structure
+
+```
+cogniscent-ai-gallery/
+├── src/
+│   ├── app/             # Next.js app router pages
+│   │   ├── blog/        # Blog posts and listing
+│   │   ├── about/       # About page
+│   │   └── page.tsx     # Homepage
+│   └── components/      # Reusable components
+├── e2e/                 # End-to-end tests
+├── public/              # Static assets
+└── __tests__/          # Unit tests
+```
