@@ -23,6 +23,16 @@ interface Artwork {
 
 const artworks: Artwork[] = [
   {
+    id: 7,
+    title: "Neural Networks at Night",
+    description: "A mesmerizing visualization of artificial neural networks, depicted as a constellation of glowing nodes connected by luminescent pathways, creating an ethereal brain-like structure against the darkness of night.",
+    image: "/images/neural-networks-night.webp",
+    prompt: "A visualization of neural networks at night, showing an ethereal network of glowing blue and purple nodes connected by luminescent paths against a dark background, creating a brain-like structure. The connections should be delicate and web-like, with brighter nodes acting as synapses. The overall effect should be both scientific and dreamlike, capturing the beauty of artificial intelligence architecture in a nocturnal setting.",
+    date: "2024-12-23",
+    width: 1024,
+    height: 1024
+  },
+  {
     id: 6,
     title: "Neural Networks at Night",
     description: "A futuristic cityscape where neural network patterns illuminate the night sky, creating a harmonious blend of technology and urban architecture.",
