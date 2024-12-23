@@ -60,3 +60,4 @@ ehthumbs.db
 *.swo
 *.tmp
 *.temp
+test-results/.last-run.json
