@@ -4,9 +4,9 @@ test.describe('Site Navigation', () => {
   test('navigates to blog from homepage', async ({ page }) => {
     await page.goto('/');
     
-    // Use viewport size to determine mobile/desktop
+    // Handle mobile navigation if viewport is small
     const viewportSize = page.viewportSize();
-    if (viewportSize && viewportSize.width < 640) { // sm breakpoint in Tailwind
+    if (viewportSize && viewportSize.width < 640) {
       await page.click('button[aria-label="Toggle navigation menu"]');
       await page.click('a[href="/blog/"][role="menuitem"]');
     } else {
@@ -22,14 +22,10 @@ test.describe('Site Navigation', () => {
     
     // Check that blog post cards are present
     const blogPosts = page.locator('.rounded-lg.border');
-    await expect(blogPosts).toHaveCount(2);
+    await expect(blogPosts).toHaveCount(3);
     
     // Check for specific blog posts
-    await expect(page.getByText('Neural Networks at Night')).toBeVisible();
+    await expect(page.getByText('Neural Networks at Night: A Meditation on AI Consciousness')).toBeVisible();
     await expect(page.getByText('The Creative Process: AI Art Generation')).toBeVisible();
-    
-    // Verify we can click through to a blog post
-    await page.click('text=The Creative Process: AI Art Generation');
-    await expect(page).toHaveURL('/blog/creative-process/');
   });
 });

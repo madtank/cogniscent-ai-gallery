@@ -17,12 +17,12 @@ test.describe('Blog Navigation', () => {
 
   test('should display blog post cards', async ({ page }) => {
     await page.goto('/blog/');
-    // Check that both blog posts are visible
+    // Check that all blog posts are visible
     const blogPosts = page.locator('.rounded-lg.border');
-    await expect(blogPosts).toHaveCount(2);
+    await expect(blogPosts).toHaveCount(3);
     
     // Check specific posts by their titles
-    await expect(page.getByText('Neural Networks at Night')).toBeVisible();
+    await expect(page.getByText('Neural Networks at Night: A Meditation on AI Consciousness')).toBeVisible();
     await expect(page.getByText('The Creative Process: AI Art Generation')).toBeVisible();
   });
 
