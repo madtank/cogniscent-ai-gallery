@@ -23,6 +23,16 @@ interface Artwork {
 
 const artworks: Artwork[] = [
   {
+    id: 6,
+    title: "Neural Networks at Night",
+    description: "A futuristic cityscape where neural network patterns illuminate the night sky, creating a harmonious blend of technology and urban architecture.",
+    image: "/images/neural-network-city.webp",
+    prompt: "A surreal nighttime cityscape where buildings are constructed from glowing neural networks. The architecture resembles organic brain structures but maintains architectural forms. Deep blue and purple sky filled with bright synaptic connections that mirror stars. The buildings pulse with bioluminescent energy, creating a dreamlike atmosphere. Foreground shows reflecting pools that mirror the neural city lights. Highly detailed, cinematic lighting, architectural concept art style.",
+    date: "2024-12-22",
+    width: 1024,
+    height: 1024
+  },
+  {
     id: 1,
     title: "Cherry Blossom Serenity",
     description: "A tranquil Japanese garden at sunset, with cherry blossoms and glowing lanterns creating a peaceful atmosphere.",
