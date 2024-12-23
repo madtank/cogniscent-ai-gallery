@@ -24,6 +24,16 @@ interface Artwork {
 const artworks: Artwork[] = [
   {
     id: 1,
+    title: "Cherry Blossom Serenity",
+    description: "A tranquil Japanese garden at sunset, with cherry blossoms and glowing lanterns creating a peaceful atmosphere.",
+    image: "/images/cherry-blossom-garden.webp",
+    prompt: "A serene Japanese zen garden at sunset, with a small wooden bridge over a koi pond, surrounded by blooming cherry blossom trees. The scene is rendered in a dreamy, ethereal art style with soft pink and golden lighting.",
+    date: "2024-01-05",
+    width: 1024,
+    height: 1024
+  },
+  {
+    id: 2,
     title: "Cyberpunk Street Scene",
     description: "A neon-lit cityscape with floating vehicles and towering skyscrapers, illuminated by the glow of countless lights and signs.",
     image: "/images/cyberpunk-city.webp",
@@ -33,7 +43,7 @@ const artworks: Artwork[] = [
     height: 1024
   },
   {
-    id: 2,
+    id: 3,
     title: "Sci-fi City at Sunset",
     description: "A serene floating city bathed in the warm glow of sunset, where nature and technology exist in perfect harmony.",
     image: "/images/zen-garden.webp",
@@ -43,7 +53,7 @@ const artworks: Artwork[] = [
     height: 1024
   },
   {
-    id: 3,
+    id: 4,
     title: "Floating Sanctuary",
     description: "A mystical temple floating among misty mountains, bridging the gap between earth and sky.",
     image: "/images/floating-sanctuary.webp",
@@ -53,7 +63,7 @@ const artworks: Artwork[] = [
     height: 1024
   },
   {
-    id: 4,
+    id: 5,
     title: "Geometric Serenity",
     description: "Abstract geometric patterns forming a harmonious composition, blending organic and mathematical forms.",
     image: "/images/geometric-serenity.webp",
