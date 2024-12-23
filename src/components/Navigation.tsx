@@ -3,9 +3,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const pathname = usePathname();
+
+  // Helper function to determine if a link is active
+  const isActive = (path: string) => pathname === path;
 
   return (
     <nav className="bg-white shadow-sm" aria-label="Main navigation">
@@ -20,23 +25,35 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8" role="navigation" aria-label="Desktop navigation">
             <Link
-              href="/gallery"
+              href="/gallery/"
               data-testid="desktop-gallery-link"
-              className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                isActive('/gallery') 
+                  ? 'border-indigo-500 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+              }`}
             >
               Gallery
             </Link>
             <Link
-              href="/blog"
+              href="/blog/"
               data-testid="desktop-blog-link"
-              className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                isActive('/blog')
+                  ? 'border-indigo-500 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+              }`}
             >
               Blog
             </Link>
             <Link
-              href="/about"
+              href="/about/"
               data-testid="desktop-about-link"
-              className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                isActive('/about')
+                  ? 'border-indigo-500 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+              }`}
             >
               About
             </Link>
@@ -72,25 +89,37 @@ export default function Navigation() {
       >
         <div className="pt-2 pb-3 space-y-1">
           <Link
-            href="/gallery"
+            href="/gallery/"
             data-testid="mobile-gallery-link"
-            className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+            className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+              isActive('/gallery')
+                ? 'border-indigo-500 text-indigo-700 bg-indigo-50'
+                : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+            }`}
             role="menuitem"
           >
             Gallery
           </Link>
           <Link
-            href="/blog"
+            href="/blog/"
             data-testid="mobile-blog-link"
-            className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+            className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+              isActive('/blog')
+                ? 'border-indigo-500 text-indigo-700 bg-indigo-50'
+                : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+            }`}
             role="menuitem"
           >
             Blog
           </Link>
           <Link
-            href="/about"
+            href="/about/"
             data-testid="mobile-about-link"
-            className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+            className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+              isActive('/about')
+                ? 'border-indigo-500 text-indigo-700 bg-indigo-50'
+                : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+            }`}
             role="menuitem"
           >
             About
