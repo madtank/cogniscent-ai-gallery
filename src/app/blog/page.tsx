@@ -11,6 +11,12 @@ interface BlogPost {
 
 const blogPosts: BlogPost[] = [
   {
+    slug: 'neural-networks-night',
+    title: 'Neural Networks at Night: A Meditation on AI Consciousness',
+    excerpt: 'A deep dive into the visualization of neural networks, exploring the intersection of artificial consciousness, technical architecture, and artistic beauty.',
+    date: '2024-12-23'
+  },
+  {
     slug: 'neural-networks-at-night',
     title: 'Neural Networks at Night: Where AI Meets Architecture',
     excerpt: 'Exploring the intersection of neural networks and urban architecture through AI-generated artwork, creating a harmonious vision of technology and human creativity.',
