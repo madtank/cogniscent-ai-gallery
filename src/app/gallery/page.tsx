@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import {
   Dialog,
   DialogContent,
@@ -20,51 +21,62 @@ interface Artwork {
   height: number;
 }
 
+const artworks: Artwork[] = [
+  {
+    id: 1,
+    title: "Cyberpunk Street Scene",
+    description: "A neon-lit cityscape with floating vehicles and towering skyscrapers, illuminated by the glow of countless lights and signs.",
+    image: "/images/cyberpunk-city.webp",
+    prompt: "cyberpunk cityscape with neon lights and floating cars, detailed architecture, volumetric lighting, 8k resolution",
+    date: "2024-01-15",
+    width: 1024,
+    height: 1024
+  },
+  {
+    id: 2,
+    title: "Sci-fi City at Sunset",
+    description: "A serene floating city bathed in the warm glow of sunset, where nature and technology exist in perfect harmony.",
+    image: "/images/zen-garden.webp",
+    prompt: "floating futuristic city at sunset, ethereal atmosphere, advanced architecture, natural elements, peaceful",
+    date: "2024-01-20",
+    width: 1024,
+    height: 1024
+  },
+  {
+    id: 3,
+    title: "Floating Sanctuary",
+    description: "A mystical temple floating among misty mountains, bridging the gap between earth and sky.",
+    image: "/images/floating-sanctuary.webp",
+    prompt: "floating temple in misty mountains, ethereal atmosphere, ancient architecture, mystical, detailed, peaceful",
+    date: "2024-01-25",
+    width: 1024,
+    height: 1024
+  },
+  {
+    id: 4,
+    title: "Geometric Serenity",
+    description: "Abstract geometric patterns forming a harmonious composition, blending organic and mathematical forms.",
+    image: "/images/geometric-serenity.webp",
+    prompt: "abstract geometric patterns, organic shapes, harmony, golden ratio, detailed textures, peaceful atmosphere",
+    date: "2024-01-30",
+    width: 1024,
+    height: 1024
+  }
+];
+
 const GalleryPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<Artwork | null>(null);
+  const searchParams = useSearchParams();
 
-  const artworks: Artwork[] = [
-    {
-      id: 1,
-      title: "Cyberpunk City",
-      description: "A neon-lit cityscape with floating vehicles and towering skyscrapers, illuminated by the glow of countless lights and signs.",
-      image: "/images/cyberpunk-city.webp",
-      prompt: "cyberpunk cityscape with neon lights and floating cars, detailed architecture, volumetric lighting, 8k resolution",
-      date: "2024-01-15",
-      width: 1024,
-      height: 1024
-    },
-    {
-      id: 2,
-      title: "Floating Sanctuary",
-      description: "A serene temple floating among misty mountains, bridging the gap between earth and sky.",
-      image: "/images/floating-sanctuary.webp",
-      prompt: "floating temple in misty mountains, ethereal atmosphere, ancient architecture, mystical, detailed, peaceful",
-      date: "2024-01-20",
-      width: 1024,
-      height: 1024
-    },
-    {
-      id: 3,
-      title: "Geometric Serenity",
-      description: "Abstract geometric patterns forming a harmonious composition, blending organic and mathematical forms.",
-      image: "/images/geometric-serenity.webp",
-      prompt: "abstract geometric patterns, organic shapes, harmony, golden ratio, detailed textures, peaceful atmosphere",
-      date: "2024-01-25",
-      width: 1024,
-      height: 1024
-    },
-    {
-      id: 4,
-      title: "Zen Garden",
-      description: "A traditional Japanese zen garden viewed through a contemporary lens, expressing peace and mindfulness.",
-      image: "/images/zen-garden.webp",
-      prompt: "japanese zen garden, minimalist design, raked sand patterns, stone arrangements, peaceful atmosphere, high detail",
-      date: "2024-01-30",
-      width: 1024,
-      height: 1024
+  useEffect(() => {
+    const imageId = searchParams.get('image');
+    if (imageId) {
+      const artwork = artworks.find(art => art.id === parseInt(imageId));
+      if (artwork) {
+        setSelectedImage(artwork);
+      }
     }
-  ];
+  }, [searchParams]);
 
   return (
     <div className="container mx-auto px-4 py-8">
