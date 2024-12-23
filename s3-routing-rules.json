@@ -1,0 +1,20 @@
+{
+    "IndexDocument": {
+        "Suffix": "index.html"
+    },
+    "ErrorDocument": {
+        "Key": "index.html"
+    },
+    "RoutingRules": [
+        {
+            "Condition": {
+                "HttpErrorCodeReturnedEquals": "404"
+            },
+            "Redirect": {
+                "ReplaceKeyWith": "index.html",
+                "HostName": "cogniscent-ai-gallery.s3-website-us-east-1.amazonaws.com",
+                "Protocol": "https"
+            }
+        }
+    ]
+}
