@@ -6,27 +6,27 @@ import Link from 'next/link';
 const galleryItems = [
   {
     id: 1,
+    image: '/images/cherry-blossom-garden.webp',
+    title: 'Cherry Blossom Serenity',
+    description: 'A tranquil Japanese garden at sunset, with cherry blossoms and glowing lanterns'
+  },
+  {
+    id: 2,
     image: '/images/cyberpunk-city.webp',
     title: 'Cyberpunk Street Scene',
     description: 'Rain-slicked street with neon signs, exploring urban futures'
   },
   {
-    id: 2,
+    id: 3,
     image: '/images/zen-garden.webp',
     title: 'Sci-fi City at Sunset',
     description: 'Futuristic floating city with spires, blending nature and technology'
   },
   {
-    id: 3,
+    id: 4,
     image: '/images/floating-sanctuary.webp',
     title: 'Floating Sanctuary',
     description: 'Mystical castle among the clouds, where fantasy meets architecture'
-  },
-  {
-    id: 4,
-    image: '/images/geometric-serenity.webp',
-    title: 'Geometric Serenity',
-    description: 'Abstract landscape exploring form and color in minimalist style'
   }
 ];
 
