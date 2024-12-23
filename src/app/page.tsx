@@ -67,8 +67,8 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-8">Featured Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {galleryItems.map((item, index) => (
-              <Link href={`/gallery?image=${item.id}`} key={index} className="block">
+            {galleryItems.map((item) => (
+              <Link href={`/gallery?image=${item.id}`} key={item.id} className="block">
                 <div className="relative h-64 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
                   <Image
                     src={item.image}
