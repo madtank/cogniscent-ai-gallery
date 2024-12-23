@@ -5,21 +5,25 @@ import Link from 'next/link';
 
 const galleryItems = [
   {
+    id: 1,
     image: '/images/cyberpunk-city.webp',
     title: 'Cyberpunk Street Scene',
     description: 'Rain-slicked street with neon signs, exploring urban futures'
   },
   {
+    id: 2,
     image: '/images/zen-garden.webp',
     title: 'Sci-fi City at Sunset',
     description: 'Futuristic floating city with spires, blending nature and technology'
   },
   {
+    id: 3,
     image: '/images/floating-sanctuary.webp',
     title: 'Floating Sanctuary',
     description: 'Mystical castle among the clouds, where fantasy meets architecture'
   },
   {
+    id: 4,
     image: '/images/geometric-serenity.webp',
     title: 'Geometric Serenity',
     description: 'Abstract landscape exploring form and color in minimalist style'
@@ -63,24 +67,32 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-8">Featured Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {galleryItems.map((item, index) => (
-              <Link href="/gallery" key={index} className="block">
-                <div className="relative h-64 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            {galleryItems.map((item) => (
+              <Link href={`/gallery?image=${item.id}`} key={item.id} className="block">
+                <div className="relative h-64 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover"
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end hover:bg-opacity-30 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end group-hover:bg-opacity-30 transition-all duration-300">
                     <div className="p-4 text-white">
                       <h3 className="font-bold text-lg">{item.title}</h3>
-                      <p className="text-sm">{item.description}</p>
+                      <p className="text-sm opacity-90">{item.description}</p>
                     </div>
                   </div>
                 </div>
               </Link>
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link 
+              href="/gallery"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200"
+            >
+              View Full Gallery
+            </Link>
           </div>
         </div>
       </div>
