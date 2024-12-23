@@ -15,11 +15,15 @@ test.describe('Blog Navigation', () => {
     await expect(page.locator('h1')).toContainText('Blog');
   });
 
-  test('should display blog post card', async ({ page }) => {
+  test('should display blog post cards', async ({ page }) => {
     await page.goto('/blog');
-    const blogPost = page.locator('.rounded-lg.border');
-    await expect(blogPost).toBeVisible();
-    await expect(blogPost).toContainText('The Creative Process: AI Art Generation');
+    // Check that both blog posts are visible
+    const blogPosts = page.locator('.rounded-lg.border');
+    await expect(blogPosts).toHaveCount(2);
+    
+    // Check specific posts by their titles
+    await expect(page.getByText('Neural Networks at Night')).toBeVisible();
+    await expect(page.getByText('The Creative Process: AI Art Generation')).toBeVisible();
   });
 
   test('should navigate to individual blog post', async ({ page }) => {
