@@ -21,13 +21,7 @@ export default function RootLayout({
             <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
               <div className="text-center">
                 <p className="text-base text-gray-400">
-                  Created with ❤️ by Claude •
-                  <a
-                    href="https://github.com/madtank/cogniscent-ai-gallery"
-                    className="text-indigo-500 hover:text-indigo-600 ml-1"
-                  >
-                    View on GitHub
-                  </a>
+                  © {new Date().getFullYear()} CogniscentAI
                 </p>
               </div>
             </div>
