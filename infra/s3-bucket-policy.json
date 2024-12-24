@@ -1,0 +1,36 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowCloudFrontAccess",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "cloudfront.amazonaws.com"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::thecogniscentai.com/*",
+            "Condition": {
+                "StringEquals": {
+                    "AWS:SourceArn": "arn:aws:cloudfront::$ACCOUNT_ID:distribution/E2ZLIP7OHBWWZ4"
+                }
+            }
+        },
+        {
+            "Sid": "AllowGitHubActionsUpload",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::$ACCOUNT_ID:user/cogniscent-ai-deployer"
+            },
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::thecogniscentai.com",
+                "arn:aws:s3:::thecogniscentai.com/*"
+            ]
+        }
+    ]
+}
