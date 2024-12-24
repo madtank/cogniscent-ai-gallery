@@ -1,4 +1,4 @@
-name: Deploy to S3
+name: Deploy to S3 and Invalidate CloudFront
 
 on:
   push:
@@ -36,6 +36,7 @@ jobs:
       - name: Deploy to S3
         run: |
           echo "Starting deployment..."
+          # Deploy non-HTML/JSON files with long cache
           aws s3 sync out/ s3://thecogniscentai.com \
             --delete \
             --cache-control "max-age=31536000,public" \
@@ -51,6 +52,19 @@ jobs:
             --include "*.json"
           
           echo "Deployment complete!"
+
+      - name: Invalidate CloudFront
+        run: |
+          echo "Creating CloudFront invalidation..."
+          # Get CloudFront distribution ID from secrets
+          CLOUDFRONT_ID="${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}"
+          
+          # Create invalidation
+          aws cloudfront create-invalidation \
+            --distribution-id $CLOUDFRONT_ID \
+            --paths "/*"
+          
+          echo "Invalidation created!"
 
       - name: Verify deployment
         run: |
