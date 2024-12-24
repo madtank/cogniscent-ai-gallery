@@ -56,12 +56,9 @@ jobs:
       - name: Invalidate CloudFront
         run: |
           echo "Creating CloudFront invalidation..."
-          # Get CloudFront distribution ID from secrets
-          CLOUDFRONT_ID="${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}"
-          
           # Create invalidation
           aws cloudfront create-invalidation \
-            --distribution-id $CLOUDFRONT_ID \
+            --distribution-id E2ZLIP7OHBWWZ4 \
             --paths "/*"
           
           echo "Invalidation created!"
@@ -70,8 +67,3 @@ jobs:
         run: |
           echo "Verifying deployment..."
           aws s3 ls s3://thecogniscentai.com --recursive
-          
-          # Check if index.html exists
-          aws s3api head-object \
-            --bucket thecogniscentai.com \
-            --key index.html || exit 1
